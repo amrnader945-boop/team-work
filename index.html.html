@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AMR LAB - Patient Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("https://i.imgur.com/FyH3Qiz.jpeg") no-repeat center center/cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        width: 350px;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        color: white;
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(30px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin: 6px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 4px;
+    }
+
+    /* الأزرار */
+    .btn {
+        width: 140px;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: 0.3s;
+    }
+
+    .whatsapp-btn {
+        background: #25D366;
+    }
+
+    .sms-btn {
+        background: #1e40af;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+
+    /* أزرار ثابتة */
+    .floating-buttons {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>AMR LAB - Patient Report</h1>
+
+    <div class="row"><span>ID</span><span id="id">835650</span></div>
+    <div class="row"><span>Name</span><span id="name">Amr Nader</span></div>
+    <div class="row"><span>Age</span><span>21</span></div>
+    <div class="row"><span>Gender</span><span>M</span></div>
+    <div class="row"><span>Clinic</span><span>Nemo Lab</span></div>
+    <div class="row"><span>Doctor</span><span>Dr. Omar</span></div>
+    <div class="row"><span>Phone</span><span id="phone">+201009975674</span></div>
+    <div class="row"><span>Email</span><span id="email">amrnader945@gmail.com</span></div>
+
+    <br>
+
+    <h3 style="text-align:center;margin-bottom:8px;">Test Results</h3>
+
+    <div class="row"><span>ABS</span><span id="abs">13</span></div>
+    <div class="row"><span>CONC</span><span id="conc">155</span></div>
+    <div class="row"><span>TRANS</span><span id="trans">22</span></div>
+</div>
+
+<!-- الزرين -->
+<div class="floating-buttons">
+
+    <button class="btn whatsapp-btn" id="sendWhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20">
+        WhatsApp
+    </button>
+
+    <button class="btn sms-btn" id="sendSMS">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" width="20">
+        SMS
+    </button>
+
+</div>
+
+<script>
+/* 🔥 اللينك الجديد فقط */
+const siteLink = "https://amrnader945-boop.github.io/team-work/";
+
+/* ---------------------- */
+/* زر واتساب */
+/* ---------------------- */
+document.getElementById("sendWhatsApp").onclick = () => {
+    const phone = document.getElementById("phone").innerText.trim();
+
+    window.open(
+        `https://wa.me/${phone}?text=Your%20lab%20results%20are%20ready.%0A${siteLink}`,
+        "_blank"
+    );
+};
+
+/* ---------------------- */
+/* زر SMS (لو عايز تشغله بعدين) */
+/* ---------------------- */
+document.getElementById("sendSMS").onclick = async () => {
+    const name = document.getElementById("name").innerText.trim();
+    const phone = document.getElementById("phone").innerText.trim();
+    const id = document.getElementById("id").innerText.trim();
+
+    await fetch("/sendLinkSMS", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ name, phone, id, link: siteLink })
+    });
+
+    alert("✔ SMS Sent Successfully!");
+};
+</script>
+
+</body>
+</html>
