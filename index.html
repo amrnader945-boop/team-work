@@ -8,8 +8,8 @@
 <style>
     body {
         margin: 0;
-        font-family: 'Arial', sans-serif;
-        background: url("https://images.pexels.com/photos/5863393/pexels-photo-5863393.jpeg") no-repeat center center/cover;
+        font-family: Arial, sans-serif;
+        background: url("https://i.imgur.com/FyH3Qiz.jpeg") no-repeat center center/cover;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -17,12 +17,12 @@
     }
 
     .card {
-        width: 360px;
-        background: rgba(0,0,0,0.35);
-        backdrop-filter: blur(14px);
+        width: 350px;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
         border-radius: 18px;
-        padding: 24px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        padding: 22px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         color: white;
         animation: fadeIn 1s ease;
     }
@@ -32,47 +32,35 @@
         to {opacity: 1; transform: translateY(0);}
     }
 
-    .logo {
-        width: 75px;
-        height: 75px;
-        display: block;
-        margin: 0 auto 10px auto;
-        border-radius: 50%;
-        border: 3px solid white;
-        object-fit: cover;
-    }
-
     h1 {
         text-align: center;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         font-size: 22px;
-        letter-spacing: 1px;
+        font-weight: bold;
     }
 
     .row {
         display: flex;
         justify-content: space-between;
-        margin: 7px 0;
+        margin: 6px 0;
         border-bottom: 1px solid rgba(255,255,255,0.2);
-        padding-bottom: 5px;
-        font-size: 15px;
+        padding-bottom: 4px;
     }
 
-    /* الزرار */
+    /* الأزرار */
     .btn {
-        width: 150px;
-        padding: 11px;
+        width: 140px;
+        padding: 10px;
         border: none;
-        border-radius: 12px;
+        border-radius: 10px;
         cursor: pointer;
-        font-size: 15px;
+        font-size: 14px;
         color: white;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        transition: 0.25s;
-        font-weight: bold;
+        transition: 0.3s;
     }
 
     .whatsapp-btn {
@@ -80,33 +68,22 @@
     }
 
     .sms-btn {
-        background: #0ea5e9;
+        background: #1e40af;
     }
 
     .btn:hover {
-        transform: scale(1.06);
-        opacity: 0.9;
+        opacity: 0.8;
+        transform: scale(1.05);
     }
 
-    /* ثابتين يمين تحت */
+    /* أزرار ثابتة */
     .floating-buttons {
         position: fixed;
         right: 18px;
-        bottom: 20px;
+        bottom: 18px;
         display: flex;
         flex-direction: column;
         gap: 14px;
-        z-index: 100;
-    }
-
-    footer {
-        position: fixed;
-        bottom: 5px;
-        width: 100%;
-        text-align: center;
-        color: white;
-        font-size: 12px;
-        opacity: 0.7;
     }
 </style>
 </head>
@@ -114,9 +91,7 @@
 <body>
 
 <div class="card">
-    <img class="logo" src="https://i.imgur.com/0Z8Fj1w.png">
-
-    <h1>AMR LAB Report</h1>
+    <h1>AMR LAB - Patient Report</h1>
 
     <div class="row"><span>ID</span><span id="id">835650</span></div>
     <div class="row"><span>Name</span><span id="name">Amr Nader</span></div>
@@ -136,7 +111,7 @@
     <div class="row"><span>TRANS</span><span id="trans">22</span></div>
 </div>
 
-<!-- زرار الواتساب و SMS -->
+<!-- الزرين -->
 <div class="floating-buttons">
 
     <button class="btn whatsapp-btn" id="sendWhatsApp">
@@ -151,14 +126,13 @@
 
 </div>
 
-<footer>© 2025 AMR LAB - All Rights Reserved</footer>
-
 <script>
-const siteLink = "https://amrnader945-boop.github.io/team-project/";
+/* 🔥 اللينك الجديد فقط */
+const siteLink = "https://amrnader945-boop.github.io/team-work/";
 
-// --------------------
-// زر واتساب
-// --------------------
+/* ---------------------- */
+/* زر واتساب */
+/* ---------------------- */
 document.getElementById("sendWhatsApp").onclick = () => {
     const phone = document.getElementById("phone").innerText.trim();
 
@@ -168,9 +142,9 @@ document.getElementById("sendWhatsApp").onclick = () => {
     );
 };
 
-// --------------------
-// زر SMS
-// --------------------
+/* ---------------------- */
+/* زر SMS (لو عايز تشغله بعدين) */
+/* ---------------------- */
 document.getElementById("sendSMS").onclick = async () => {
     const name = document.getElementById("name").innerText.trim();
     const phone = document.getElementById("phone").innerText.trim();
